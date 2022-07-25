@@ -4,10 +4,13 @@ import { Button } from "./../components/Button";
 import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from '../api/axios'
+import useAuth from '../hooks/useAuth';
 
 
 
 export const Login = () => {
+  
+  const {login} = useAuth();
   const [nama, setNama]=useState('');
   const [password, setPassword]=useState('');
   const [errMsg,setErrMsg]= useState('');
@@ -28,6 +31,7 @@ export const Login = () => {
 
       if (response?.data) {
         setSuccess(true);
+        login(response?.data?.result)
       }
     } catch (error) {
       if(!e?.response) {
@@ -68,6 +72,9 @@ export const Login = () => {
       {success ? (
         <span>Berhasil login</span>
       ): ''}
+      {errMsg ? (
+        <span>{errMsg}</span>
+      ):''}
       <Helmet>
         <title>Login</title>
       </Helmet>

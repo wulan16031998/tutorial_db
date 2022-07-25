@@ -1,10 +1,19 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button } from "./Button";
+import useAuth from '../hooks/useAuth'
+import { useNavigate } from "react-router-dom";
 
 const Table = (req) => {
+  const {warga} =  useAuth();
+  const navigate = useNavigate();
+
   const [listWarga, setListWarga]= useState([]);
   const token = localStorage.getItem('token');
+
+  if(!warga) {
+    navigate('/login')
+}
   
     const getListWarga = async () => {
       try {
