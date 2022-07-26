@@ -1,4 +1,4 @@
-import { createContext, useMemo } from "react";
+import { createContext, useContext, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useLocalStorage } from "./useLocalStorage";
 
@@ -29,4 +29,8 @@ export const AuthProvider = ({children}) => {
         [warga]
     );
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+};
+ const useAuth = () => {
+    return useContext(AuthContext);
 }
+export default useAuth;

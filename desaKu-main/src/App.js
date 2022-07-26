@@ -4,6 +4,7 @@ import { About } from "./pages/About";
 import { Login } from "./pages/Login";
 import { Dashboard } from "./pages/Dashboard";
 import { Register } from "./components/Register";
+import RouteGuard from "./guard/RouteGuard";
 
 function App() {
   return (
@@ -13,7 +14,11 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/dashboard/*" element={<Dashboard />} />
+        <Route path="/dashboard/*" element={
+          <RouteGuard>
+            <Dashboard />
+          </RouteGuard>
+        } />
       </Routes>
     </>
   );

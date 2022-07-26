@@ -1,12 +1,15 @@
 import React from "react";
 import Table from "../components/Table";
+import RouteGuard from "../guard/RouteGuard";
 
 
 const Warga = () => {
   return (
     <>
       <h1>Data Warga</h1>
-        <Table />
+      <RouteGuard>
+      <Table />
+      </RouteGuard> 
     
     </>
   );
