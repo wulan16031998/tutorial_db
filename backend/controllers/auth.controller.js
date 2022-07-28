@@ -24,8 +24,12 @@ const register = async (req,res) => {
             return res.status(400)
             .json({
                 status:400,
-                message:'sorry, validation fail, check your data again'
+                message:'sorry, validation fail, check your data again',
+                error:error
+
             })
+
+
         }
 
         const data = {

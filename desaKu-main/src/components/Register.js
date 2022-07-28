@@ -49,40 +49,41 @@ export const Register =  () => {
       }
     
 
+}
 return (
-    <>
-      <Helmet>
-        <title>Register</title>
-      </Helmet>
-      <div className="grid grid-cols-2 mb-2 ">
-        <div className="bg-loginpic h-auto">
-          <Link to="/" className="p-4 text-white text-3xl bg-[#29b2ff] ">
-            ←
-          </Link>
-        </div>
-        <div className="m-auto">
-          <h1 className="text-4xl pb-5 font-bold text-[#29b2ff] text-center">Register</h1>
-          {success ? (
-            <span>Berhasil register</span>
-          ):''}
-          {errMsg ? (
-            <span>{errMsg}</span>
-          ):''}
-          <form onSubmit={handleSubmit} action="/register" method="post" className="grid grid-rows-3 gap-4 w-80 h-90">
-            <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="Username" value={nama} onChange={(e) => {setNama(e.target.value);}}/>
-            <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="nomor induk kartu keluarga" value={nikk} onChange={(e) => { setNikk(e.target.value);}}/>
-            <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="alamat KTP" value={alamatKtp} onChange={(e) => {setAlamatKtp(e.target.value);}}/>
-            <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="Pekerjaan" value={pekerjaan} onChange={(e) => {setPekerjaan(e.target.value);}} />
-            <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="Contact" value={contact} onChange={(e) => {setContact(e.target.value);}}/>
-            <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="email" value={email} onChange={(e) =>{ setEmail(e.target.value);}} />
-            <input type="password" name="name" className="border-solid border-2 p-2 rounded-md" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value);}}/>
-            <input type="password" name="name" className="border-solid border-2 p-2 rounded-md" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value);}}/>
-            
-            <Button text="submit" onClick={Register} />
-          </form>
-        </div>
-      </div >
-    </>
-  );
-}}
+  <>
+    // <Helmet>
+    //   <title>Register</title>
+    // </Helmet>
+    <div className="grid grid-cols-2 mb-2 ">
+      <div className="bg-loginpic h-auto">
+        <Link to="/" className="p-4 text-white text-3xl bg-[#29b2ff] ">
+          ←
+        </Link>
+      </div>
+      <div className="m-auto">
+        <h1 className="text-4xl pb-5 font-bold text-[#29b2ff] text-center">Register</h1>
+        {success ? (
+          <span>Berhasil register</span>
+        ):''}
+        {errMsg ? (
+          <span>{errMsg}</span>
+        ):''}
+        <form onSubmit={handleSubmit} action="/register" method="post" className="grid grid-rows-3 gap-4 w-80 h-90">
+          <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="Username" value={nama} onChange={(e) => {setNama(e.target.value);}}/>
+          <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="nomor induk kartu keluarga" value={nikk} onChange={(e) => { setNikk(e.target.value);}}/>
+          <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="alamat KTP" value={alamatKtp} onChange={(e) => {setAlamatKtp(e.target.value);}}/>
+          <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="Pekerjaan" value={pekerjaan} onChange={(e) => {setPekerjaan(e.target.value);}} />
+          <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="Contact" value={contact} onChange={(e) => {setContact(e.target.value);}}/>
+          <input type="text" name="name" className="border-solid border-2 radius p-2 rounded-md" placeholder="email" value={email} onChange={(e) =>{ setEmail(e.target.value);}} />
+          <input type="password" name="name" className="border-solid border-2 p-2 rounded-md" placeholder="Password" value={password} onChange={(e) => {setPassword(e.target.value);}}/>
+          <input type="password" name="name" className="border-solid border-2 p-2 rounded-md" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => {setConfirmPassword(e.target.value);}}/>
+          
+          <Button text="submit" onClick={Register} />
+        </form>
+      </div>
+    </div >
+  </>
+);
+}
 
