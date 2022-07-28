@@ -8,14 +8,6 @@ const register = async (req,res) => {
     try {
         const {body} = req;
 
-        // if(body.nikk === 'undefined') {
-        //     return res.status(400)
-        //     .json({
-        //         status:400,
-        //         message:'maaf nikk kosong'
-        //     })
-        // }
-
         const wargaValidation = Joi.object().keys({
             nama:Joi.string().required(),
             nikk: Joi.string().required(),
@@ -32,7 +24,7 @@ const register = async (req,res) => {
             return res.status(400)
             .json({
                 status:400,
-                message:'sorry, validasi gagal, periksa kembali data anda'
+                message:'sorry, validation fail, check your data again'
             })
         }
 

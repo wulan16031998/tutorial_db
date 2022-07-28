@@ -5,36 +5,36 @@ import useAuth from '../hooks/useAuth'
 import { useNavigate } from "react-router-dom";
 
 
-const Table = (req) => {
-  const {warga} =  useAuth();
-  const navigate = useNavigate();
-
-  const [listWarga, setListWarga]= useState([]);
-  const token = localStorage.getItem('token');
-
-  if(!warga) {
-    navigate('/login')
-}
+const TableKeuangan = (req) => {
   
-    const getListWarga = async () => {
-      try {
-        const data = await axios.get('https://jsonplaceholder.typicode.com/users' , {
-          headers: {
-            'authorization':'Bearer '+ token,
-          } })
-          setListWarga(data)
-      
-      } 
-      catch(err) {
-        console.log(err);
-      }}
+    const {warga} =  useAuth();
+    const navigate = useNavigate();
 
-    useEffect(()=> {
-      getListWarga();
-    },)
-    console.log(listWarga);
-    
-    
+    const KEUANGAN_URL = '/keuangan'
+
+    const [errMsg, setErrMsg] = useState([])
+    const [data, setData] = useState([])
+
+    const loadData = async(e) => {
+        e.preventDefault();
+        try {
+            const response = await axios.get(KEUANGAN_URL, {
+                headers:{'Content-Type':'application/json'},
+                'Authorization':'Bearer' + warga.token
+            })
+
+            if(response?.data) {
+                setData(response.data.result)
+            }
+        } catch (e) {
+            if(!e?.response) {
+                setErrMsg('tidak ada respon apa apa dari server')
+            } else if (!e?.response?.data?.message) {
+                setErrMsg(!e?.response?.data?.message)
+            }
+        }
+    }
+
 
 // const Table = (req) => {
 //   const [listWarga, setListWarga]= useState([]);
@@ -52,32 +52,32 @@ const Table = (req) => {
 
   return (
     <>
-   
+    {errMsg ? (
+        <span>{errMsg}</span>
+      ) :'' }
       <table className="table-auto w-9/12">
         <thead className="bg-gray-50 border-b-2 border-gray-200">
           <tr>
-          <th className="p-3 font-semibold text-left">Name</th>
-          <th className="p-3 font-semibold text-left">Contact</th>
-          <th className="p-3 font-semibold text-left">Address</th>
-          <th className="p-3 font-semibold text-left">Job</th>
-          <th className="p-3 font-semibold text-left">Action</th>
+            <th className="p-3 font-semibold text-left">nama</th>
+            <th className="p-3 font-semibold text-left">Tgl bayar</th>
+            <th className="p-3 font-semibold text-left">nominal</th>
           </tr>
         </thead>
         <tbody>
-          {listWarga.map(listWarga => {
+          {data ? data.map((p) => {
             return (
-              <tr key={listWarga.id}>
-              <td className="p-3 border-r-2 border-b-2">{listWarga.nama}</td>
-              <td className="p-3 border-r-2 border-b-2">{listWarga.contact}</td>
-              <td className="p-3 border-r-2 border-b-2">{listWarga.alamatKtp}</td>
-              <td className="p-3 border-r-2 border-b-2">{listWarga.pekerjaan}</td>
+              <tr key={data.wargaid}>
+              <td className="p-3 border-r-2 border-b-2">{p.nama}</td>
+              <td className="p-3 border-r-2 border-b-2">{p.tglBayar}</td>
+              <td className="p-3 border-r-2 border-b-2">{p.nominal}</td>
               <td className="p-3 border-r-2 border-b-2 flex gap-1">
-                <Button text="Update" />
+                <Button onClick={loadData} text="Update" />
                 <Button text="Delete" />
               </td>
             </tr>
             )
-          })}
+          }): ''
+        }
         </tbody>
     {/*}
       <tr>
@@ -107,4 +107,4 @@ const Table = (req) => {
   );
 };
 
-export default Table;
+export default TableKeuangan;

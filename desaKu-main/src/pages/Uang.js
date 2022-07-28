@@ -1,11 +1,11 @@
 import React from "react";
-import Table from "../components/Table";
+import TableKeuangan from "../components/TableKeuangan";
 
 const Uang = () => {
   return (
     <>
       <h1>Data Keuangan</h1>
-      <Table />
+      <TableKeuangan />
     </>
   );
 };

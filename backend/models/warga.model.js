@@ -10,11 +10,11 @@ WargaModel.init({
         allowNull:false,
     },
     nikk:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false,
     },
     contact:{
-        type:DataTypes.STRING,
+        type:DataTypes.INTEGER,
         allowNull:false,
     },
     alamatKtp:{
