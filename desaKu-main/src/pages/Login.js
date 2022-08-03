@@ -26,16 +26,21 @@ export const Login = () => {
         nama:nama,
         password:password
       }), {
-        headers: {'Content-Type':'application/json'}
-      })
+        headers: {
+          'Content-Type':'application/json'
+        }
 
+      })
+      
       if (response?.data) {
         setSuccess(true);
-        login(response?.data?.result)
+        console.log(login(response?.data?.result))
+        
+     
       }
-    } catch (error) {
+    } catch (e) {
       if(!e?.response) {
-        setErrMsg('tidak ada respon dari server')
+        setErrMsg('nothing response from server')
       } else if (e?.response?.data?.message) {
         setErrMsg(e?.response?.data?.message)
         }

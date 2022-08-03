@@ -6,7 +6,7 @@ import { useLocalStorage } from "./useLocalStorage";
 const AuthContext = createContext();
 
 export const AuthProvider = ({children}) => {
-    const {warga, setWarga} = useLocalStorage("warga", null);
+    const [warga, setWarga] = useLocalStorage('warga',null);
     const navigate = useNavigate();
 
     //call this function when you want to athenticate the warga
@@ -21,7 +21,8 @@ export const AuthProvider = ({children}) => {
         navigate("/login", {replace:true});
     };
 
-    const value = useMemo ( () => ({
+    const value = useMemo (
+         () => ({
         warga,
         login,
         logout

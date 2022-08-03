@@ -52,9 +52,9 @@ export const Register =  () => {
 }
 return (
   <>
-    // <Helmet>
-    //   <title>Register</title>
-    // </Helmet>
+    <Helmet>
+      <title>Register</title>
+    </Helmet>
     <div className="grid grid-cols-2 mb-2 ">
       <div className="bg-loginpic h-auto">
         <Link to="/" className="p-4 text-white text-3xl bg-[#29b2ff] ">

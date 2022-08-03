@@ -61,11 +61,11 @@ const login = async (req, res) => {
        
        const warga = await WargaModel.findOne({
         where: {nama:body.nama}
-    })
-
+    }) 
     if (warga) {
+        console.log(warga)
         const valid = await Bcrypt.compare(body.password, warga.password)
-  
+        console.log(valid)
         if(valid) {
             const token = Jwt.sign({
                 id:warga.id,
@@ -83,7 +83,9 @@ const login = async (req, res) => {
                     token:token
                 }
             })
+          
         }
+      
         return res.status(401)
         .json({
             status:401,
@@ -101,10 +103,83 @@ const login = async (req, res) => {
         return res.status(500)
         .json({
             status:500,
-            message:'Kesalahan server'
+            message:'server error'
     })
     }
 }
 
+// const login = async (req, res) => {
+//     try {
+  
+//       const {body} = req;
+//       const wargaValidation = Joi
+//         .object()
+//         .keys({
+//           nama: Joi.string().required(),
+//           password: Joi.string().required()
+//         })
+  
+//       const {error} = wargaValidation.validate(body)
+  
+//       if (error) {
+//         return res.status(422)
+//           .json({
+//             status: 422,
+//             message: "Request yang anda masukan salah atau tidak benar!",
+//             result: error.message
+//           })
+//       }
+  
+//       // cari email yang di request
+//       const wargaIsFound = await WargaModel.findOne({where: {nama: body.nama}})
+  
+//       // jika email ditemukan
+//       if (wargaIsFound) {
+  
+//         // lakukan pengecekan decrypt dari request password dan password yang ada didalam database
+//         const valid = await Bcrypt.compare(body.password, wargaIsFound.password)
+      
+//         // jika valid
+//         if (valid) {
+//           // generate jwt token, assign expire selama 1 jam
+//           const token = Jwt.sign({
+//             id: wargaIsFound.id,
+//             name: wargaIsFound.nama,
+//           }, jwtConfig.secret, {
+//             algorithm: "HS256",
+//             expiresIn: jwtConfig.expiresIn,
+//           })
+  
+//           return res.status(200)
+//             .json({
+//               status: 200,
+//               message: 'OK',
+//               result: {
+//                 name: wargaIsFound.nama,
+//                 token: token
+//               }
+//             })
+//         }
+  
+//         // jika pengecekan password gagal
+//         return res.status(400)
+//           .json({
+//             status: 400,
+//             message: 'Mohon maaf password salah!'
+//           })
+  
+//       }
+  
+    
+  
+//     } catch (e) {
+//       console.log(e)
+//       return res.status(500)
+//         .json({
+//           status: 500,
+//           message: "Kesalahan server!."
+//         })
+//     }
+//   }
 export {register, login}
 
