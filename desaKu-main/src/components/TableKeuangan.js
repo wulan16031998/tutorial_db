@@ -1,19 +1,20 @@
 import axios from "../api/axios";
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { Button } from "./Button";
-import useAuth from '../hooks/useAuth'
+import {useAuth} from '../hooks/useAuth'
 import { useNavigate } from "react-router-dom";
-
 
 const TableKeuangan = (req) => {
   
     const {warga} =  useAuth();
-    const navigate = useNavigate();
-
     const KEUANGAN_URL = '/keuangan'
-
     const [errMsg, setErrMsg] = useState([])
     const [data, setData] = useState([])
+    const navigate = useNavigate()
+
+    if(!warga) {
+      navigate('/login')
+    }
 
     const loadData = async(e) => {
         e.preventDefault();
@@ -34,21 +35,6 @@ const TableKeuangan = (req) => {
             }
         }
     }
-
-
-// const Table = (req) => {
-//   const [listWarga, setListWarga]= useState([]);
-//   const token = localStorage.getItem('token');
-  
-//     const getListWarga = () => {
-//       fetch('https://jsonplaceholder.typicode.com/users')
-//       .then(response => response.json())
-//       .then(data => console.log(data));
-//     } 
-
-//     useEffect(()=> {
-//       setListWarga(getListWarga());
-//     },)
 
   return (
     <>
@@ -79,29 +65,6 @@ const TableKeuangan = (req) => {
           }): ''
         }
         </tbody>
-    {/*}
-      <tr>
-        <td className="p-3 border-r-2 border-b-2">Sukarno</td>
-        <td className="p-3 border-r-2 border-b-2">0853535353</td>
-        <td className="p-3 border-r-2 border-b-2">Jl Telindung No 20</td>
-        <td className="p-3 border-r-2 border-b-2">Ketua RT</td>
-        <td className="p-3 border-r-2 border-b-2 flex gap-1">
-          <Button text="Update" />
-          <Button text="Delete" />
-        </td>
-      </tr>
-      <tr>
-        <td className="p-3 border-r-2 border-b-2">Sukarno</td>
-        <td className="p-3 border-r-2 border-b-2">0853535353</td>
-        <td className="p-3 border-r-2 border-b-2">Jl Telindung No 20</td>
-        <td className="p-3 border-r-2 border-b-2">Ketua RT</td>
-        <td className="p-3 border-r-2 border-b-2 flex gap-1">
-          <Button text="Update" />
-          <Button text="Delete" />
-        </td>
-      </tr>
-    </tbody>
-          {*/}   
       </table>
     </>
   );

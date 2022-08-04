@@ -1,14 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { Navbar } from "../components/Navbar";
 import { Helmet } from "react-helmet";
 import { Link, Route, Routes } from "react-router-dom";
 import Uang from "./Uang";
 import Warga from "./Warga";
-import { Axios } from "axios";
-import { useEffect } from "react";
+
 
 export const Dashboard = () => {
-  
+ 
 
   return (
     <>

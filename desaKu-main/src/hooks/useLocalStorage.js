@@ -10,14 +10,14 @@ export const useLocalStorage = (keyName, defaultValue) => {
                 window.localStorage.setItem(keyName, JSON.stringify(defaultValue));
                 return defaultValue;
             }
-        } catch (error) {
+        } catch (err) {
             return defaultValue;
         }
     });
     const setValue = (newValue) => {
         try {
             window.localStorage.setItem(keyName, JSON.stringify(newValue));
-        } catch (error) { 
+        } catch (err) { 
         }
         setStoredValue(newValue);
     };

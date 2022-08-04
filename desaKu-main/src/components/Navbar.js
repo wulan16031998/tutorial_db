@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Button } from "./Button";
-import useAuth from "../hooks/useAuth";
+import {useAuth} from "../hooks/useAuth";
 
 export const Navbar = () => {
   const {logout} = useAuth();

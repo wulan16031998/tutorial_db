@@ -1,10 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import { Button } from "./../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import axios from '../api/axios'
-import useAuth from '../hooks/useAuth';
+import {useAuth} from '../hooks/useAuth';
 
 
 
@@ -15,7 +15,7 @@ export const Login = () => {
   const [password, setPassword]=useState('');
   const [errMsg,setErrMsg]= useState('');
   const [success,setSuccess]= useState('');
-  const navigate = useNavigate();
+
  
   const LOGIN_URL ='/login'
 
@@ -34,7 +34,7 @@ export const Login = () => {
       
       if (response?.data) {
         setSuccess(true);
-        console.log(login(response?.data?.result))
+        login(response?.data?.result)
         
      
       }

@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import { Helmet } from "react-helmet";
 import { Button } from "./../components/Button";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import axios from "../api/axios";
 
 export const Register =  () => {
@@ -15,7 +15,6 @@ export const Register =  () => {
     const [confirmPassword, setConfirmPassword]=useState('');
     const [errMsg,setErrMsg]= useState('');
     const [success,setSuccess] = useState(false);
-    const navigate =useNavigate();
 
     const REGISTER_URL = '/register'
 

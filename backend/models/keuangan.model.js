@@ -20,7 +20,7 @@ KeuanganModel.init({
 }, {
     sequelize:db,
     freezeTableName:true,
-    underscored:true,
+    underscored:false,
     timestamps:false,
     modelName:'keuangan'
 })
