@@ -1,6 +1,5 @@
 import React from "react";
 import TableKeuangan from "../components/TableKeuangan";
-import RouteGuard from "../guard/RouteGuard";
 
 const Uang = () => {
   return (
